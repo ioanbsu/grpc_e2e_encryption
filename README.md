@@ -7,7 +7,12 @@ To start a server with e2e encryption enabled do:
 ### Grpc server
 
 ```java
-
+    private static final String CLIENT_ID_A = "CLIENT_ID_A";
+    //see tink documentation on how to generate tink's Aead, or check out E2eAppEncryptionIntegrationTest test in 
+    // test folder.
+    private static Aead clientABRequestKey;
+    private static Aead clientABResponseKey;
+    
     private static Server startGrpcServer()throws IOException{
         final ImmutableMap<String, Aead> requestDecryptionKeys=ImmutableMap.of(CLIENT_ID_A,clientABRequestKey);
         final ImmutableMap<String, Aead> responseEncryptionKeys=ImmutableMap.of(CLIENT_ID_A,clientABResponseKey);
