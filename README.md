@@ -69,4 +69,4 @@ Once it is released, the `ServerInterceptors` from grpc.io shall be used instead
 
 ## More info
 
-See more info at this blog post.
+See more info at this [blog post](https://medium.com/@ioanbsu1/e2e-app-level-encryption-with-grpc-java-327987c4be27).
