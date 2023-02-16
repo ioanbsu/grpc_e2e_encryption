@@ -38,11 +38,11 @@ On client the setup is similar, except client doesn't have map of clients and ke
 id and key(s) for encrypting requests and responses:
 
 ```java
- ManagedChannel managedChannelAB
-    =NettyChannelBuilder.forTarget(grpcServerPath).usePlaintext()
+final ManagedChannel managedChannelAB
+    = NettyChannelBuilder.forTarget(grpcServerPath).usePlaintext()
     .intercept(new ClientE2eEncryptingInterceptor(clientABRequestKey,clientABResponseKey,CLIENT_ID_A)).build();
 final HelloServiceGrpc.HelloServiceFutureStub helloServiceFutureStub
-    =HelloServiceGrpc.newFutureStub(managedChannelAB);
+    = HelloServiceGrpc.newFutureStub(managedChannelAB);
     ...
 ```
 
