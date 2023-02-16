@@ -1,4 +1,4 @@
-# Groc e2e app level encyrption
+# Grpc e2e app level encyrption
 
 ## Quickstart
 
