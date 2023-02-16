@@ -7,20 +7,22 @@ To start a server with e2e encryption enabled do:
 ### Grpc server
 
 ```java
+
     private static Server startGrpcServer()throws IOException{
-final ImmutableMap<String, Aead> requestDecryptionKeys=ImmutableMap.of(CLIENT_ID_A,clientABRequestKey);
-final ImmutableMap<String, Aead> responseEncryptionKeys=ImmutableMap.of(CLIENT_ID_A,clientABResponseKey);
-    return NettyServerBuilder.forPort(SERVER_PORT)
-    .intercept(new ServerE2eAppEncryptionInterceptor())
-    .addService(
-    ServerInterceptors.intercept(
-    ServerInterceptors.useMarshalledMessages(new HelloServiceGrpcImpl().bindService(),
-    new ServerRequestDecryptor(requestDecryptionKeys),
-    new ServerResponseEncryptor(responseEncryptionKeys)
-    )
-    )
-    ).build().start();
+        final ImmutableMap<String, Aead> requestDecryptionKeys=ImmutableMap.of(CLIENT_ID_A,clientABRequestKey);
+        final ImmutableMap<String, Aead> responseEncryptionKeys=ImmutableMap.of(CLIENT_ID_A,clientABResponseKey);
+        return NettyServerBuilder.forPort(SERVER_PORT)
+            .intercept(new ServerE2eAppEncryptionInterceptor())
+            .addService(
+                ServerInterceptors.intercept(
+                ServerInterceptors.useMarshalledMessages(new HelloServiceGrpcImpl().bindService(),
+                    new ServerRequestDecryptor(requestDecryptionKeys),
+                    new ServerResponseEncryptor(responseEncryptionKeys)
+                )
+            )
+        ).build().start();
     }
+    
 ```
 
 The `CLIENT_ID` is id of the client who will be talking to that server. Server can support several distinct clients,
