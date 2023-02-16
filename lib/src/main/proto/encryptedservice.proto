@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+
+package e2e.platform.core;
+
+option java_package = "grpc.e2e.encryption";
+
+message HelloRequest{
+  string request_payload = 1;
+}
+
+message HelloResponse{
+  string response_payoload = 1;
+}
+
+service HelloService{
+  rpc Hello(HelloRequest) returns (HelloResponse);
+}
