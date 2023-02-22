@@ -1,9 +1,5 @@
 # gRPC e2e app level encryption
 
-## Quickstart
-
-To start a server with e2e encryption enabled do:
-
 ### Grpc server
 
 ```java
